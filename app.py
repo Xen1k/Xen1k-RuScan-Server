@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_cors import CORS
-from qr import qr_blueprint
+from scan import qr_blueprint
 
 app = Flask(__name__)
-app.register_blueprint(qr_blueprint, url_prefix="/qr")
+app.register_blueprint(qr_blueprint, url_prefix="/scan")
 cors = CORS(app)
 
 
