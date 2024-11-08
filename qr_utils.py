@@ -5,8 +5,8 @@ import matplotlib.patches as patches
 from PIL import Image
 import numpy as np
 import base64
-from pylibdmtx.pylibdmtx import decode
-print(decode(cv2.imread('trash/mark.jpg')))
+# from pylibdmtx.pylibdmtx import decode
+# print(decode(cv2.imread('trash/mark.jpg')))
 # Create a QReader instance
 qreader = QReader()
 
@@ -15,13 +15,13 @@ def readb64(uri):
    return cv2.imdecode(nparr, cv2.IMREAD_ANYCOLOR)
 
 def detect_and_mark_qr(uri):
-    img_path = "trash/mark.jpg"
+    img_path = "tests/1.jpg"
     # Get the image that contains the QR code
-    # image = cv2.cvtColor(readb64(uri), cv2.COLOR_BGR2RGB)
-    # image_out = readb64(uri)
+    image = cv2.cvtColor(readb64(uri), cv2.COLOR_BGR2RGB)
+    image_out = readb64(uri)
     # cv2.imwrite("image.jpg", image)
-    image = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
-    image_out = cv2.imread(img_path)
+    # image = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    # image_out = cv2.imread(img_path)
     # resize
     # p = 0.5
     # w = int(image.shape[1] * p)
@@ -63,11 +63,11 @@ def detect_and_mark_qr(uri):
     retval, out_jpg_img = cv2.imencode('.jpg', image_out)
     out_img_b64 = base64.b64encode(out_jpg_img).decode('utf-8')
 
-    cv2.namedWindow('edit.jpg', cv2.WINDOW_NORMAL)
-    cv2.imshow("edit.jpg", image_out)
-    cv2.imshow("edit.jpg", readb64(out_img_b64))
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # cv2.namedWindow('edit.jpg', cv2.WINDOW_NORMAL)
+    # cv2.imshow("edit.jpg", image_out)
+    # cv2.imshow("edit.jpg", readb64(out_img_b64))
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     return out_img_b64, decoded_text[0]
 
-# detect_and_mark_qr("")
+# detect_and_mark_qr("") todo crash

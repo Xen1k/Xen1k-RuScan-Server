@@ -11,6 +11,7 @@ def handle_find_qr_message():
     content_type = request.headers.get('Content-Type')
     if content_type == 'application/json':
         json = request.json
+        print("New QR scan request")
         base64img = json["imgBase64"]
         out_base64img, decoded_texts = detect_and_mark_qr(base64img)
         return jsonify(

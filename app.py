@@ -12,4 +12,4 @@ def handle_find_qr_message():
     return 'RuScan server is up'
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.1.111', port=5000)
+    app.run(debug=True, host='192.168.1.150', port=5000)
