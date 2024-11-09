@@ -3,7 +3,9 @@ import numpy as np
 import cv2
 from flask import Blueprint, request, jsonify
 from qr_utils import *
-
+from datamatrtix_utils import *
+from code_types import *
+    
 qr_blueprint = Blueprint("scan", __name__)
 
 @qr_blueprint.route('/qr', methods=['POST'])
@@ -13,9 +15,23 @@ def handle_find_qr_message():
         json = request.json
         print("New QR scan request")
         base64img = json["imgBase64"]
-        out_base64img, decoded_texts = detect_and_mark_qr(base64img)
+        out_base64img, decoded_entities = detect_and_mark_qr(base64img)
         return jsonify(
             imgBase64=out_base64img,
-            decoded_texts=decoded_texts
+            decoded_entities=decoded_entities,
+        )
+    return 'Content-Type not supported!'
+
+@qr_blueprint.route('/datamatrix', methods=['POST'])
+def handle_find_datamatrix_message():
+    content_type = request.headers.get('Content-Type')
+    if content_type == 'application/json':
+        json = request.json
+        print("New datamatrix scan request")
+        base64img = json["imgBase64"]
+        out_base64img, decoded_entities = detect_and_mark_datamatrix(base64img)
+        return jsonify(
+            imgBase64=out_base64img,
+            decoded_entities=decoded_entities,
         )
     return 'Content-Type not supported!'
