@@ -1,7 +1,7 @@
 
-from enum import Enum
+from enum import IntEnum
 
-class CodeType(Enum):
+class CodeType(IntEnum):
     UNKNOWN = 0
     QR = 1
     DATAMATRIX = 2
@@ -13,4 +13,7 @@ class DecodedEntity:
         self.type = type
     
     text = ""
-    type =CodeType.UNKNOWN
+    type = CodeType.UNKNOWN
+
+    def to_dict(self):
+        return {"text": self.text, "type": self.type}

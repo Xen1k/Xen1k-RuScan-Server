@@ -42,7 +42,8 @@ def detect_and_mark_qr(img_b64):
 
     decoded_entities = []
     for text in decoded_text[0]:
-        decoded_entities.append(DecodedEntity(text, CodeType.QR))
+        entity = DecodedEntity(text, CodeType.QR)
+        decoded_entities.append(entity.to_dict())
     
     # show_image_b64(out_img_b64)
     
