@@ -61,7 +61,7 @@ def detect_and_mark_barcodes(img_b64):
         decoded_entities.append(entity.to_dict())
     print(decoded_entities)
     
-    show_image_b64(out_img_b64)
+    # show_image_b64(out_img_b64)
     
     return out_img_b64, decoded_entities
 
